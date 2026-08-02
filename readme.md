@@ -2,7 +2,7 @@
 
 Laravel package for integrating the [Tabler](https://tabler.io) admin template, built on Bootstrap 5 and Vite.
 
-> **Note on the package name:** this package started life as a Bootstrap 5 integration. The frontend has since been upgraded to Bootstrap 5, but the package name/namespace (`guszandy/laravel-tabler-bootstrap4`, `GusZandy\Tabler`) is kept for backwards compatibility.
+> **Note on the package name:** this package started life as a Bootstrap 4 integration (`guszandy/laravel-tabler-bootstrap4`). The frontend has since been upgraded to Bootstrap 5 and the Composer package was renamed to `guszandy/laravel-tabler-bootstrap5` to match. The PHP namespace (`GusZandy\Tabler`) is unchanged, so config/view publishing commands below still reference it.
 
 ## Requirements
 
@@ -22,7 +22,7 @@ php artisan breeze:install blade
 # Installation
 
 ```bash
-composer require guszandy/laravel-tabler-bootstrap4
+composer require guszandy/laravel-tabler-bootstrap5
 ```
 
 Run this to scaffold the views into your app:
