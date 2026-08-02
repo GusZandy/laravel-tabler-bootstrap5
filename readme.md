@@ -1,8 +1,8 @@
-# Laravel Tabler Bootstrap 4
+# Laravel Tabler Bootstrap 5
 
 Laravel package for integrating the [Tabler](https://tabler.io) admin template, built on Bootstrap 5 and Vite.
 
-> **Note on the package name:** this package started life as a Bootstrap 4 integration. The frontend has since been upgraded to Bootstrap 5, but the package name/namespace (`guszandy/laravel-tabler-bootstrap4`, `GusZandy\Tabler`) is kept for backwards compatibility.
+> **Note on the package name:** this package started life as a Bootstrap 5 integration. The frontend has since been upgraded to Bootstrap 5, but the package name/namespace (`guszandy/laravel-tabler-bootstrap4`, `GusZandy\Tabler`) is kept for backwards compatibility.
 
 ## Requirements
 
