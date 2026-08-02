@@ -62,14 +62,14 @@
                                     @enderror
                                 </div>
                                 <div class="form-group">
-                                    <label for="check" class="custom-control custom-checkbox">
-                                        <input id="check" type="checkbox" class="custom-control-input"/>
-                                        <span class="custom-control-label">Agree the <a href="terms.html">terms and policy</a></span>
-                                    </label>
+                                    <div class="form-check">
+                                        <input id="check" type="checkbox" class="form-check-input"/>
+                                        <label for="check" class="form-check-label">Agree the <a href="terms.html">terms and policy</a></label>
+                                    </div>
                                 </div>
                                 <div class="form-footer">
                                     <button type="submit"
-                                            class="btn btn-primary btn-block">{{ __('Register') }}</button>
+                                            class="btn btn-primary w-100">{{ __('Register') }}</button>
                                 </div>
                             </div>
                         </form>

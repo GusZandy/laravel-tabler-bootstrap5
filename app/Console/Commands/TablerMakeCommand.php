@@ -73,11 +73,12 @@ class TablerMakeCommand extends Command
         $this->info('Copying public...');
         $this->xcopy(__DIR__.'/../../../public', public_path());
         if (!$this->option('views')) {
-            file_put_contents(
-                base_path('webpack.mix.js'),
-                file_get_contents(__DIR__.'/stubs/make/webpack.mix.stub'),
-                FILE_APPEND
-            );
+            $this->warn('Add the Tabler entry points to the "input" array of the laravel() plugin in your vite.config.js:');
+            $this->line('    "resources/sass/tabler.scss",');
+            $this->line('    "resources/js/tabler.js",');
+            $this->warn('Then install the npm dependencies and build the assets:');
+            $this->line('    npm install');
+            $this->line('    npm run build');
         }
         $this->info('Tabler scaffolding generated successfully.');
     }

@@ -27,7 +27,7 @@
                                 <label class="form-label">
                                     {{ __('Password') }}
                                     @if (Route::has('password.request'))
-                                        <a href="{{ route('password.request') }}" class="float-right small">I forgot password</a>
+                                        <a href="{{ route('password.request') }}" class="float-end small">I forgot password</a>
                                     @endif
                                 </label>
                                 <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
@@ -38,13 +38,13 @@
                                 @enderror
                             </div>
                             <div class="form-group">
-                                <label class="custom-control custom-checkbox" for="remember">
+                                <div class="form-check">
                                     <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
-                                    <span class="custom-control-label">{{ __('Remember Me') }}</span>
-                                </label>
+                                    <label class="form-check-label" for="remember">{{ __('Remember Me') }}</label>
+                                </div>
                             </div>
                             <div class="form-footer">
-                                <button type="submit" class="btn btn-primary btn-block">{{ __('Login') }}</button>
+                                <button type="submit" class="btn btn-primary w-100">{{ __('Login') }}</button>
                             </div>
                         </div>
                     </form>

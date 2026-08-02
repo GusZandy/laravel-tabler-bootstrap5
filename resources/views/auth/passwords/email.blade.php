@@ -29,7 +29,7 @@
                             </div>
 
                             <div class="form-footer">
-                                <button type="submit" class="btn btn-primary btn-block">
+                                <button type="submit" class="btn btn-primary w-100">
                                     {{ __('Send Password Reset Link') }}
                                 </button>
                             </div>

@@ -1,6 +1,6 @@
 <div class="form-group">
-  <label class="form-label">{{ !empty($field['label']) ? $field['label'] : title_case(str_replace('_', ' ', snake_case($field['name']))) }}{{ !empty($field['required']) ? '*' : '' }}</label>
-  <select class="form-control custom-select {{ $errors->has($field['name']) ? 'is-invalid' : '' }}" name="{{ $field['name'] }}">
+  <label class="form-label">{{ !empty($field['label']) ? $field['label'] : \Illuminate\Support\Str::title(str_replace('_', ' ', \Illuminate\Support\Str::snake($field['name']))) }}{{ !empty($field['required']) ? '*' : '' }}</label>
+  <select class="form-select {{ $errors->has($field['name']) ? 'is-invalid' : '' }}" name="{{ $field['name'] }}">
     @foreach ($field['options'] as $option)
     <option value="{{ $option['value'] }}" {{ $option['value'] == old($field['name'], isset($model) ? $model->{$field['name']} : null) ? 'selected' : '' }}>{{ $option['text'] }}</option>
     @endforeach

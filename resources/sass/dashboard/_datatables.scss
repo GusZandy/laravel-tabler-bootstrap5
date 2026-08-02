@@ -46,7 +46,7 @@
     margin: 1rem 1.5rem;
     float: left;
     select{
-      @extend .form-control, .custom-select;
+      @extend .form-select;
       width: auto;
       display: inline-block;
       margin: 0 0.2rem;

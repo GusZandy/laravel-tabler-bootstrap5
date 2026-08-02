@@ -22,7 +22,7 @@
 	}
 
 	.imagecheck-input:checked ~ & {
-		border-color: $border-color-dark;
+		border-color: $border-color-darker;
 	}
 
 	&:before {
@@ -35,7 +35,7 @@
 		height: 1rem;
 		pointer-events: none;
 		user-select: none;
-		background: $primary $custom-checkbox-indicator-icon-checked no-repeat center center/50% 50%;
+		background: $primary $form-check-input-checked-bg-image no-repeat center center/50% 50%;
 		color: #fff;
 		z-index: 1;
 		border-radius: 3px;

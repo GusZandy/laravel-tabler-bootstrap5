@@ -1,80 +1,92 @@
 # Laravel Tabler Bootstrap 4
-Laravel 5.8 and 6.0 Package for integrating Tabler template and this package is Laravel Mix friendly. Currently this package can be integrated easily only on fresh installation. For laravel >= 7.0, you can use develop branch.
+
+Laravel package for integrating the [Tabler](https://tabler.io) admin template, built on Bootstrap 5 and Vite.
+
+> **Note on the package name:** this package started life as a Bootstrap 4 integration. The frontend has since been upgraded to Bootstrap 5, but the package name/namespace (`guszandy/laravel-tabler-bootstrap4`, `GusZandy\Tabler`) is kept for backwards compatibility.
+
+## Requirements
+
+- PHP ^8.3
+- Laravel ^12.0 or ^13.0
+- Node.js 18+ (for building assets with Vite)
 
 # Pre-Installation
-Before install, you must create the authentication scaffolding manually
 
-- for Laravel 5.8
-```php
-php artisan make:auth
+Before installing, scaffold authentication in your app. Any Laravel starter kit that provides `login`/`register`/`password.email`/`password.update` routes works (for example [Laravel Breeze](https://laravel.com/docs/starter-kits)):
+
+```bash
+composer require laravel/breeze --dev
+php artisan breeze:install blade
 ```
-- for Laravel >= 6.0 
-  1. First install laravel/ui package from composer  
-     ```php
-     composer require laravel/ui
-     ```
-  1. And then, run code below
-     ```php
-     php artisan ui vue --auth
-     ```
 
 # Installation
-```php
+
+```bash
 composer require guszandy/laravel-tabler-bootstrap4
 ```
-For laravel >= 7.0, use this:
-```php
-composer require guszandy/laravel-tabler-bootstrap4:dev-develop
-```
 
-Run this code below to implement the template,
-```php
+Run this to scaffold the views into your app:
+
+```bash
 php artisan make:tabler
 ```
-Let's see what we've installed. First, make sure that you've already ran ```php artisan migrate``` command, then do
-```php
+
+Make sure you've run `php artisan migrate`, then:
+
+```bash
 php artisan serve
 ```
-Viola! a Laravel site using Tabler is running right now.
 
 # Configuration and Views Customization
+
 ## Config
-To publish this package config to your app config, run this code below
-```php
+To publish this package's config to your app config, run:
+```bash
 php artisan vendor:publish --provider="GusZandy\Tabler\Providers\AppServiceProvider" --tag="config"
 ```
+
 ## Views
-To publish this package views so you can customize on your own, run this code below
-```php
+To publish this package's views so you can customize them, run:
+```bash
 php artisan vendor:publish --provider="GusZandy\Tabler\Providers\AppServiceProvider" --tag="views"
 ```
 
 # Next Step
-First of all, you should understand how to use [Laravel Mix](https://laravel.com/docs/mix) and install latest laravel-mix.
 
-Tabler need some package on npm. First you need to run
-```php
+This package uses [Vite](https://laravel.com/docs/vite) (Laravel's default asset bundler) instead of Laravel Mix.
+
+After running `php artisan make:tabler`, add the Tabler entry points to the `input` array of the `laravel()` plugin in your app's `vite.config.js`:
+
+```js
+laravel({
+    input: [
+        'resources/css/app.css',
+        'resources/js/app.js',
+        'resources/sass/tabler.scss',
+        'resources/js/tabler.js',
+    ],
+    refresh: true,
+}),
+```
+
+Then install the npm dependencies and build the assets:
+
+```bash
 npm install
+npm run dev    # local development, with HMR
+npm run build  # production build
 ```
 
-Install Tabler needed package from npm
-```php
-npm install --save-dev bootstrap bootstrap-sass popper.js chart.js d3 font-awesome jquery-circle-progress jvectormap moment requirejs select2 select2-bootstrap-theme selectize sparkline tabler-ui tablesorter bootstrap-datepicker eonasdan-bootstrap-datetimepicker @ttskch/select2-bootstrap4-theme
+In your Blade layout, load the compiled assets with the `@vite` directive:
+
+```blade
+@vite(['resources/sass/tabler.scss', 'resources/js/tabler.js'])
 ```
 
-Run Laravel Mix command
-```php
-npm run development
-```
-or use ```production``` minimize output
-```php
-npm run production
-```
-
-Then have a good look on these files
-- ```webpack.mix.js```
-- ```resources/assets/js/tabler.js```
-- ```resources/assets/sass/tabler.scss```
+Then have a good look at these files:
+- `vite.config.js`
+- `resources/js/tabler.js`
+- `resources/sass/tabler.scss`
 
 Happy experimenting!
 
@@ -116,3 +128,12 @@ Happy experimenting!
   @endslot
 @endcomponent
 ```
+
+# Frontend stack
+
+- **Bootstrap 5.3** (upgraded from Bootstrap 4)
+- **Vite** (upgraded from Laravel Mix)
+- **Tom Select** for enhanced multi-selects/tagging (replaces the unmaintained Selectize)
+- **Tempus Dominus 6** for date/time pickers (replaces `eonasdan-bootstrap-datetimepicker`; no longer needs jQuery or Moment)
+- **jsvectormap** for interactive maps (replaces `jvectormap`)
+- **Chart.js 4**, **select2**, **bootstrap-datepicker**, **tablesorter** and **sparkline** are still bundled and still rely on jQuery, which remains a dependency of this package.

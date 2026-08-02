@@ -1,5 +1,5 @@
 <div class="form-group">
-  <label class="form-label">{{ !empty($field['label']) ? $field['label'] : title_case(str_replace('_', ' ', snake_case($field['name']))) }}{{ !empty($field['required']) ? '*' : '' }}</label>
+  <label class="form-label">{{ !empty($field['label']) ? $field['label'] : \Illuminate\Support\Str::title(str_replace('_', ' ', \Illuminate\Support\Str::snake($field['name']))) }}{{ !empty($field['required']) ? '*' : '' }}</label>
   <textarea class="form-control {{ $errors->has($field['name']) ? 'is-invalid' : '' }}" name="{{ $field['name'] }}"
     rows="{{ !empty($field['row']) ? $field['row'] : 4 }}"
     cols="{{ !empty($field['cols']) ? $field['cols'] : 80 }}"

@@ -1,20 +1,19 @@
 window._ = require('lodash');
-window.moment = require('moment');
 
 /**
- * We'll load jQuery and the Bootstrap jQuery plugin which provides support
- * for JavaScript based Bootstrap features such as modals and tabs. This
- * code may be modified to fit the specific needs of your application.
+ * We'll load jQuery, which is still required by a handful of the bundled
+ * jQuery plugins below (bootstrap-datepicker, select2, tablesorter,
+ * sparkline, jquery-circle-progress). Bootstrap 5 itself no longer needs
+ * jQuery or a globally exposed Popper — it bundles @popperjs/core.
  */
 
 try {
-    window.Popper = require('popper.js').default;
     window.$ = window.jQuery = require('jquery');
 
     require('bootstrap');
 
     // Chart.js
-    require('chart.js');
+    require('chart.js/auto');
 
     // Sparkline
     require('sparkline');
@@ -25,14 +24,15 @@ try {
     // jQuery vector map
     require('vector-map');
 
-    // Selectize
-    require('selectize');
+    // Tom Select (successor to Selectize)
+    window.TomSelect = require('tom-select').default;
 
     // bootstrap-datepicker
     require('bootstrap-datepicker');
 
-    // eonasdan-bootstrap-datetimepicker
-    require('eonasdan-bootstrap-datetimepicker');
+    // Tempus Dominus (successor to eonasdan-bootstrap-datetimepicker)
+    const { TempusDominus } = require('@eonasdan/tempus-dominus');
+    window.TempusDominus = TempusDominus;
 
     // select2
     require('select2');
@@ -48,7 +48,7 @@ try {
     require('./app');
 
 } catch (e) {
-
+    console.error(e);
 }
 
 /**
@@ -102,8 +102,8 @@ let hexToRgba = function(hex, opacity) {
 
 // window.Echo = new Echo({
 //     broadcaster: 'pusher',
-//     key: process.env.MIX_PUSHER_APP_KEY,
-//     cluster: process.env.MIX_PUSHER_APP_CLUSTER,
+//     key: import.meta.env.VITE_PUSHER_APP_KEY,
+//     cluster: import.meta.env.VITE_PUSHER_APP_CLUSTER,
 //     encrypted: true
 // });
 
@@ -113,10 +113,10 @@ $(document).ready(function() {
     const DIV_CARD = 'div.card';
 
     /** Initialize tooltips */
-    $('[data-toggle="tooltip"]').tooltip();
+    $('[data-bs-toggle="tooltip"]').tooltip();
 
     /** Initialize popovers */
-    $('[data-toggle="popover"]').popover({
+    $('[data-bs-toggle="popover"]').popover({
         html: true
     });
 
@@ -206,15 +206,22 @@ $(document).ready(function() {
         todayHighlight: true,
         autoclose: true
     });
-    $('.js-datetimepicker').datetimepicker({
-        sideBySide: true,
-        format: 'YYYY-MM-DD HH:mm:ss',
+
+    /** Tempus Dominus datetimepicker (replaces eonasdan-bootstrap-datetimepicker) */
+    document.querySelectorAll('.js-datetimepicker').forEach(function(el) {
+        new TempusDominus(el, {
+            display: {
+                sideBySide: true,
+            },
+            localization: {
+                format: 'yyyy-MM-dd HH:mm:ss',
+            },
+        });
     });
+
     $('.js-select2').select2({
         allowClear: true,
         dropdownAutoWidth: true,
-        theme: 'bootstrap'
+        theme: 'bootstrap-5'
     });
 });
-
-

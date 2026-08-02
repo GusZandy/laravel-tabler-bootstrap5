@@ -26,53 +26,29 @@ textarea {
 	margin-top: 2rem;
 }
 
-.custom-select,
-.custom-file {
-	//display: block;
-	//width: 100%;
-}
-
-.custom-control {
+.form-check {
 	user-select: none;
+	margin-bottom: .25rem;
 }
 
-.custom-controls-stacked {
-	.custom-control {
-		margin-bottom: .25rem;
-	}
-}
-
-.custom-control-label {
+.form-check-label {
 	vertical-align: middle;
-
-	&:before {
-		border: 1px solid $input-border-color;
-		background-color: #fff;
-		background-size: .5rem;
-	}
 }
 
-.custom-control-description {
-	line-height: 1.5rem;
+.form-check-input {
+	border: 1px solid $input-border-color;
+	background-color: #fff;
+	background-size: .5rem;
 }
 
-.input-group-prepend,
-.input-group-append,
-.input-group-btn {
+.input-group-text,
+.input-group .btn {
 	font-size: px2rem(15px);
-
-	>.btn {
-		height: 100%;
-		border-color: $border-color;
-	}
 }
 
-.input-group-prepend > .input-group-text {
-	border-right: 0;
-}
-
-.input-group-append > .input-group-text {
-	border-left: 0;
+.input-group > .btn {
+	height: 100%;
+	border-color: $border-color;
 }
 
 /**

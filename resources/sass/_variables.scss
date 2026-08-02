@@ -3,7 +3,6 @@ $enable-rounded: true;
 $enable-shadows: false;
 $enable-gradients: false;
 $enable-transitions: true;
-$enable-hover-media-query: false;
 $enable-grid-classes: true;
 $enable-print-styles: true;
 
@@ -127,39 +126,41 @@ $body-color: $gray-700;
 // Code
 $code-font-size: 85%;
 $code-color: inherit;
+// Prevent Bootstrap 5's dark-mode variables from running tint-color() on "inherit"
+$code-color-dark: inherit;
 
 $kbd-color: #fff;
 $kbd-bg: $gray-800;
 
 $pre-color: $gray-900;
 
-// Yiq
-$yiq-contrasted-threshold: 190;
-$yiq-text-dark: $body-color;
-$yiq-text-light: $white;
+// Contrast (Bootstrap 5 replaced the old YIQ contrast system with color-contrast())
+$min-contrast-ratio: 3;
 
 // Buttons
-$input-line-height: (24/15);
-$btn-line-height: (24/13);
+$input-line-height: 1.6; // 24/15
+$btn-line-height: 1.8461538462; // 24/13
 
-$input-line-height-sm: (16/14);
-$btn-line-height-sm: (16/12);
+$input-line-height-sm: 1.1428571429; // 16/14
+$btn-line-height-sm: 1.3333333333; // 16/12
 
-$input-line-height-lg: (26/18);
-$btn-line-height-lg: (26/16);
+$input-line-height-lg: 1.4444444444; // 26/18
+$btn-line-height-lg: 1.625; // 26/16
 
 $input-btn-focus-width: 2px;
 
 $input-disabled-bg: $gray-100;
 
 $input-focus-border-color: #1991eb;
-$custom-select-focus-border-color: #1991eb;
+$form-select-focus-border-color: #1991eb;
 
 // Borders
 $border-width: 1px;
 //$border-color: #dee3eb;
 $border-color: rgba(0, 40, 100, .12);
-$border-color-dark: rgba(0, 40, 100, .24);
+// Note: not named $border-color-dark on purpose — that name is reserved by
+// Bootstrap 5's own dark color mode (see bootstrap/scss/_variables-dark.scss).
+$border-color-darker: rgba(0, 40, 100, .24);
 
 // Inputs
 $input-bg: #fff;
@@ -266,11 +267,11 @@ $border-radius-sm: 3px;
 $table-accent-bg: rgba(0, 0, 0, .02);
 $table-hover-bg: rgba(0, 0, 0, .04);
 
-$custom-select-padding-y: .5rem;
-$custom-select-padding-x: .75rem;
+$form-select-padding-y: .5rem;
+$form-select-padding-x: .75rem;
 
-$custom-select-indicator-color: #999;
-$custom-select-indicator: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 5'%3E%3Cpath fill='#{$custom-select-indicator-color}' d='M0 0L10 0L5 5L0 0'/%3E%3C/svg%3E");
+$form-select-indicator-color: #999;
+$form-select-indicator: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 5'%3E%3Cpath fill='#{$form-select-indicator-color}' d='M0 0L10 0L5 5L0 0'/%3E%3C/svg%3E");
 
 // Aside
 $aside-width: 22rem;

@@ -1,9 +1,7 @@
 <div class="form-group">
-  <label class="form-label">{{ !empty($field['label']) ? $field['label'] : title_case(str_replace('_', ' ', snake_case($field['name']))) }}{{ !empty($field['required']) ? '*' : '' }}</label>
+  <label class="form-label">{{ !empty($field['label']) ? $field['label'] : \Illuminate\Support\Str::title(str_replace('_', ' ', \Illuminate\Support\Str::snake($field['name']))) }}{{ !empty($field['required']) ? '*' : '' }}</label>
   <div class="input-group">
-    <div class="input-group-prepend">
-      <span class="input-group-text"><i class="fa fa-calendar"></i></span>
-    </div>
+    <span class="input-group-text"><i class="fe fe-calendar"></i></span>
     <input type="text"
       class="form-control js-datepicker {{ $errors->has($field['name']) ? 'is-invalid' : '' }}"
       name="{{ $field['name'] }}"

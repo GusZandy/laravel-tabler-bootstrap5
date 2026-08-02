@@ -1,11 +1,9 @@
 <div class="form-group">
   @if (!empty($field['type']) && $field['type'] == 'checkbox')
-  <div class="custom-controls-stacked">
+  <div class="form-check">
     {{-- <input type="hidden" name="{{ $field['name'] }}" value="0"> --}}
-    <label class="custom-control custom-checkbox">
-      <input type="checkbox" class="custom-control-input" name="{{ $field['name'] }}" value="1" {{ old($field['name'], isset($model) ? $model->{$field['name']} : null) == 1 ? 'checked' : '' }}>
-      <span class="custom-control-label">{{ !empty($field['label']) ? $field['label'] : title_case(str_replace('_', ' ', snake_case($field['name']))) }}{{ !empty($field['required']) ? '*' : '' }}</span>
-    </label>
+    <input type="checkbox" class="form-check-input" id="{{ $field['name'] }}" name="{{ $field['name'] }}" value="1" {{ old($field['name'], isset($model) ? $model->{$field['name']} : null) == 1 ? 'checked' : '' }}>
+    <label class="form-check-label" for="{{ $field['name'] }}">{{ !empty($field['label']) ? $field['label'] : \Illuminate\Support\Str::title(str_replace('_', ' ', \Illuminate\Support\Str::snake($field['name']))) }}{{ !empty($field['required']) ? '*' : '' }}</label>
     @if ($errors->has($field['name']))
     <div class="invalid-feedback">
       {{ $errors->first($field['name']) }}
@@ -14,11 +12,9 @@
   </div>
   @elseif (!empty($field['type']) && $field['type'] == 'radio')
   @foreach ($field['options'] as $key => $option)
-  <div class="custom-controls-stacked">
-    <label class="custom-control custom-radio">
-      <input type="radio" class="custom-control-input"  name="{{ $field['name'] }}" type="radio" value="{{ $option['value'] }}" {{ old($field['name'], isset($model) ? $model->{$field['name']} : null) == $option['value'] ? 'checked' : '' }}>
-      <div class="custom-control-label">{{ $option['text'] }}</div>
-    </label>
+  <div class="form-check">
+    <input type="radio" class="form-check-input" id="{{ $field['name'] }}_{{ $key }}" name="{{ $field['name'] }}" value="{{ $option['value'] }}" {{ old($field['name'], isset($model) ? $model->{$field['name']} : null) == $option['value'] ? 'checked' : '' }}>
+    <label class="form-check-label" for="{{ $field['name'] }}_{{ $key }}">{{ $option['text'] }}</label>
     @if ($errors->has($field['name']) && $loop->last)
     <div class="invalid-feedback">
       {{ $errors->first($field['name']) }}
@@ -27,7 +23,7 @@
   </div>
   @endforeach
   @else
-  <label class="form-label">{{ !empty($field['label']) ? $field['label'] : title_case(str_replace('_', ' ', snake_case($field['name']))) }}{{ !empty($field['required']) ? '*' : '' }}</label>
+  <label class="form-label">{{ !empty($field['label']) ? $field['label'] : \Illuminate\Support\Str::title(str_replace('_', ' ', \Illuminate\Support\Str::snake($field['name']))) }}{{ !empty($field['required']) ? '*' : '' }}</label>
   <input type="{{ !empty($field['type']) ? $field['type'] : 'text' }}"
          class="form-control {{ $errors->has($field['name']) ? 'is-invalid' : '' }}"
          name="{{ $field['name'] }}"

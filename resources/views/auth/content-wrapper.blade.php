@@ -29,14 +29,12 @@
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet"
           href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,300i,400,400i,500,500i,600,600i,700,700i&amp;subset=latin-ext">
 
 @section('styles')
     <!-- Styles -->
-        {{--    <link href="{{ asset('css/app.css') }}" rel="stylesheet">--}}
-        <link href="{{ mix('css/tabler.css') }}" rel="stylesheet">
+        @vite(['resources/sass/tabler.scss', 'resources/js/tabler.js'])
     @show
     @stack('head')
 </head>
@@ -45,11 +43,6 @@
 @show
 
 @section('scripts')
-    <!-- Scripts -->
-    {{--    <script src="{{ asset('js/app.js') }}" defer></script>--}}
-    <script src="{{mix('js/manifest.js') }}"></script>
-    <script src="{{mix('js/vendor.js') }}"></script>
-    <script src="{{mix('js/tabler.js') }}"></script>
 @show
 @stack('body')
 </body>

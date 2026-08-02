@@ -3,19 +3,16 @@
 namespace Tests\Feature;
 
 use Tests\TestCase;
-use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class ExampleTest extends TestCase
 {
     /**
-     * A basic test example.
+     * The package config should be merged into the application config.
      *
      * @return void
      */
     public function testBasicTest()
     {
-        $response = $this->get('/');
-
-        $response->assertStatus(200);
+        $this->assertSame('zandy', config('tabler.company_name'));
     }
 }
