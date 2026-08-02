@@ -1,8 +1,8 @@
 {
-    "name": "guszandy/laravel-tabler-bootstrap4",
+    "name": "guszandy/laravel-tabler-bootstrap5",
     "type": "package",
-    "description": "Laravel Package for integrating Tabler template and this package is Laravel Mix friendly.",
-    "keywords": ["laravel", "tabler", "package", "composer", "admin", "dashboard", "bootstrap 4"],
+    "description": "Laravel package for integrating the Tabler admin template, built on Bootstrap 5 and Vite.",
+    "keywords": ["laravel", "tabler", "package", "composer", "admin", "dashboard", "bootstrap 5", "vite"],
     "license": "MIT",
     "require": {
         "php": "^8.3",
